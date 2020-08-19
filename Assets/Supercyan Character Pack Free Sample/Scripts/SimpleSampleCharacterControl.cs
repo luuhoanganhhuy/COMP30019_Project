@@ -21,6 +21,9 @@ public class SimpleSampleCharacterControl : MonoBehaviour
         Direct
     }
 
+    public GameObject wayPoint;
+    private float timer = 0.5f;
+
     [SerializeField] private float m_moveSpeed = 2;
     [SerializeField] private float m_turnSpeed = 200;
     [SerializeField] private float m_jumpForce = 4;
@@ -52,6 +55,22 @@ public class SimpleSampleCharacterControl : MonoBehaviour
     {
         if(!m_animator) { gameObject.GetComponent<Animator>(); }
         if(!m_rigidBody) { gameObject.GetComponent<Animator>(); }
+    }
+
+    void Update () {
+        if (timer > 0) {
+            timer -= Time.deltaTime;
+        }
+        if (timer <= 0) {
+             //The position of the waypoint will update to the player's position
+            UpdatePosition();
+            timer = 0.5f;
+        }
+    }
+ 
+    void UpdatePosition() {
+        //The wayPoint's position will now be the player's current position.
+        wayPoint.transform.position = transform.position;
     }
 
     private void OnCollisionEnter(Collision collision)
