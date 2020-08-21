@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
 	public int maxHealth = 1000;
 	public int currentHealth;
+	public int score = 0;
 	public int damage = -1;
-	public double distance_min = 1.5;
+	public double distanceMinimum = 1.5;
 	public HealthBar healthBar;
 
 	public GameObject[] targets;
@@ -35,7 +34,7 @@ public class Player : MonoBehaviour
     {
 		for (int i = 0; i < targets.Length; i++){
 			float distance = Vector3.Distance(targets[i].transform.position, transform.position);
-			if (distance < distance_min)
+			if (distance < distanceMinimum)
 			{
 				ChangeHealth(damage);
 			}
@@ -51,9 +50,19 @@ public class Player : MonoBehaviour
 		}
 		if (currentHealth < 0)
         {
-			currentHealth = 0;
+			//currentHealth = 0;
+			Global.overallScore = score;
+			if (Global.overallScore > Global.maxScore) {
+				Global.maxScore = Global.overallScore;
+			}
+			SceneManager.LoadScene(2);
         }
 
 		healthBar.SetHealth(currentHealth);
 	}
+}
+
+public static class Global {
+	public static int overallScore;
+	public static int maxScore = 0;
 }
