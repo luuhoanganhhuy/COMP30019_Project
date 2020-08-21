@@ -3,15 +3,35 @@
 public class CamControl : MonoBehaviour
 {
     public GameObject player;
-    public Vector3 offset;    // Start is called before the first frame update
+    private Vector3 offset;
+
+    float distance;
+    Vector3 playerPrevPos, playerMoveDir;
+
+    // Use this for initialization
     void Start()
     {
-        offset = transform.position;
+        offset = transform.position - player.transform.position;
+
+        distance = offset.magnitude;
+        playerPrevPos = player.transform.position;
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    void LateUpdate()
     {
-        transform.position = player.transform.position + offset;
+
+        playerMoveDir = player.transform.position - playerPrevPos;
+        if (playerMoveDir != Vector3.zero)
+        {
+            transform.position = player.transform.position - playerMoveDir.normalized * distance;
+
+            Vector3 position = transform.position;
+            position.y = 5f;
+            transform.position = position; // required height
+
+            transform.LookAt(player.transform.position);
+
+            playerPrevPos = player.transform.position;
+        }
     }
 }

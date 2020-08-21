@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 
 public class FreeCameraLogic : MonoBehaviour {
 
@@ -50,5 +51,6 @@ public class FreeCameraLogic : MonoBehaviour {
 
         transform.position = position;
         transform.LookAt(m_currentTarget.position + new Vector3(0, m_height, 0));
+        //transform.LookAt(position);
     }
 }
