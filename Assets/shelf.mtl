@@ -1,0 +1,8 @@
+newmtl Wooden_Floor_2
+map_Kd Wooden Floor2_4K_Albedo.tga
+map_Pm Wooden Floor2_4K_Metalness.tga
+bump Wooden Floor2_4K_Normal.tga
+disp Wooden Floor2_4K_Displacement.tga
+Kd 1 1 1
+d 1
+
