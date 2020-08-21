@@ -54,6 +54,7 @@ public class Player : MonoBehaviour
 			Global.overallScore = score;
 			if (Global.overallScore > Global.maxScore) {
 				Global.maxScore = Global.overallScore;
+				PlayerPrefs.SetInt("highscore", score);
 			}
 			SceneManager.LoadScene(2);
         }
@@ -64,5 +65,5 @@ public class Player : MonoBehaviour
 
 public static class Global {
 	public static int overallScore;
-	public static int maxScore = 0;
+	public static int maxScore = PlayerPrefs.GetInt("highscore", 0);
 }
