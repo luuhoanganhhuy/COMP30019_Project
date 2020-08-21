@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
 	public int damage = -1;
 	public double distanceMinimum = 1.5;
 	public HealthBar healthBar;
+	public Pause pause;
 
 	public GameObject[] targets;
     // Start is called before the first frame update
@@ -27,7 +28,9 @@ public class Player : MonoBehaviour
 		{
 			ChangeHealth(+200);
 		}
-		Distance();
+		if (!pause.isPaused){
+			Distance();
+		}
     }
 
 	void Distance()
