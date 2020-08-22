@@ -2659,17 +2659,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Your goal is to collect as many supplies as possible while avoiding the
-    Covid-infected Karens. Luckily, they hate vaccines, so you can use it to push
-    them back a bit, or even stun them.
-
-
-    Move: Arrow keys or WASD
-
-    Hover
-    view: mouse
-
-    shoot vaccines: left-click'
+  m_text: "Your goal as the manager, is to collect as many supplies as possible to
+    score and heal while avoiding the Covid-infected Karens tailing you. \n\nLuckily,
+    they hate vaccines, so you can use it to push them back a bit, or even stun them.\n\nMove:
+    Arrow keys or WASD\nJump: Space\nHover view: mouse\nshoot vaccines: left-click"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -2698,7 +2691,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 12.05
+  m_fontSize: 12.9
   m_fontSizeBase: 11.22
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2739,12 +2732,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 18.182953, w: -4.4023438}
   m_textInfo:
     textComponent: {fileID: 1914833619}
-    characterCount: 256
+    characterCount: 316
     spriteCount: 0
-    spaceCount: 45
-    wordCount: 45
+    spaceCount: 58
+    wordCount: 56
     linkCount: 0
-    lineCount: 8
+    lineCount: 11
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
