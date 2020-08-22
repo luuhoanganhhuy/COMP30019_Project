@@ -19,14 +19,14 @@ public class Collected : MonoBehaviour
         float down = wallDown.transform.position.z;
         
         if (collider.gameObject.CompareTag("Player")){
-            Vector3 newPos = generatePos(-3,-3,3,3);
-            //Vector3 newPos = generatePos(left,down,right,up);
+            //Vector3 newPos = generatePos(-3,-3,3,3);
+            Vector3 newPos = generatePos(left,down,right,up);
             while (!isValid(newPos)) {
-                newPos = generatePos(-3,-3,3,3);
-                //newPos = generatePos(left,down,right,up);
+                //newPos = generatePos(-3,-3,3,3);
+                newPos = generatePos(left,down,right,up);
             }
-            //Debug.Log(newPos);
-            Instantiate(this, this.transform.position + newPos, this.transform.rotation);
+            Debug.Log(newPos);
+            Instantiate(this, newPos, this.transform.rotation);
             Destroy(gameObject);
             player.ChangeHealth(healthChange);
             player.score += awardPoints;
