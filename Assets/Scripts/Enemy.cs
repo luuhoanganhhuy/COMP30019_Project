@@ -86,11 +86,37 @@ public class Enemy : MonoBehaviour
         }
         healthBar.SetHealth(currentHealth);
     }
-    
-    void OnCollisionEnter(Collision other) {
-        if (other.gameObject.tag == "Bullet") {
+
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Bullet")
+        {
             ChangeHealth(damage);
             print(currentHealth);
+            Vector3 newPos = generatePos(-3, -3, 3, 3);
+            while (!isValid(this.transform.position + newPos))
+            {
+                newPos = generatePos(-3, -3, 3, 3);
+            }
+            Instantiate(this, this.transform.position + newPos, this.transform.rotation);
         }
+    }
+
+    public Vector3 generatePos(float minX, float minZ, float maxX, float maxZ)
+    {
+        float xVal = Random.Range(minX, maxX);
+        float zVal = Random.Range(minZ, maxZ);
+        return new Vector3(xVal, 0, zVal);
+    }
+
+    public bool isValid(Vector3 targetPos)
+    {
+        GameObject[] walls = GameObject.FindGameObjectsWithTag("Wall");
+        foreach (GameObject current in walls)
+        {
+            if (current.transform.position == targetPos)
+                return false;
+        }
+        return true;
     }
 }
