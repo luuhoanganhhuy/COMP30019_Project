@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
 		if (!pause.isPaused){
 			Distance();
 		}
+		targets = GameObject.FindGameObjectsWithTag("Enemy");
     }
 
 	void Distance()

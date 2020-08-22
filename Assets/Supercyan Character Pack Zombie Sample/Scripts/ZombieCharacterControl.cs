@@ -39,6 +39,5 @@ public class ZombieCharacterControl : MonoBehaviour
 
         Vector3 direction = transform.position - Vector3.MoveTowards(transform.position, wayPointPos, m_moveSpeedAggro * Time.deltaTime);
         m_animator.SetFloat("MoveSpeed", direction.magnitude);
-
     }
 }
