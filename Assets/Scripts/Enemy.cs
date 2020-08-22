@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
 	public int maxHealth = 100;
 	public int currentHealth;
 	public int damage = -20;
+    public HealthBar healthBar;
 
     public void Initialize(GameObject character)
     {
@@ -38,20 +39,25 @@ public class Enemy : MonoBehaviour
 		currentHealth = maxHealth;
 
         wayPoint = GameObject.Find("wayPoint");
-	}
+        healthBar.SetMaxHealth(maxHealth);
+    }
 
     // Update is called once per frame
     void Update()
     {
         if (stunned) {
+           
             stun_time += Time.deltaTime;
             print(stun_time);
             if (stun_time > 10) {
                 stunned = false;
                 currentHealth = maxHealth;
+                healthBar.SetMaxHealth(maxHealth);
+                m_animator.SetTrigger("Reset");
             }
         }
         else {
+            
             wayPointPos = new Vector3(wayPoint.transform.position.x, transform.transform.position.y, wayPoint.transform.position.z);
             //Here, the zombie's will follow the waypoint.
             Vector3 oldPos = transform.position;
@@ -76,12 +82,14 @@ public class Enemy : MonoBehaviour
         {
             stunned = true;
             stun_time = 0;
+            m_animator.SetTrigger("Dead");
         }
-	}
+        healthBar.SetHealth(currentHealth);
+    }
     
     void OnCollisionEnter(Collision other) {
         if (other.gameObject.tag == "Bullet") {
-            ChangeHealth(-20);
+            ChangeHealth(damage);
             print(currentHealth);
         }
     }
