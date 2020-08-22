@@ -25,7 +25,7 @@ public class Collected : MonoBehaviour
                 //newPos = generatePos(-3,-3,3,3);
                 newPos = generatePos(left,down,right,up);
             }
-            Debug.Log(newPos);
+            //Debug.Log(newPos);
             Instantiate(this, newPos, this.transform.rotation);
             Destroy(gameObject);
             player.ChangeHealth(healthChange);
