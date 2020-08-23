@@ -2662,7 +2662,8 @@ MonoBehaviour:
   m_text: "Your goal as the manager, is to collect as many supplies as possible to
     score and heal while avoiding the Covid-infected Karens tailing you. \n\nLuckily,
     they hate vaccines, so you can use it to push them back a bit, or even stun them.\n\nMove:
-    Arrow keys or WASD\nJump: Space\nHover view: mouse\nshoot vaccines: left-click"
+    Arrow /  WASD\n\nJump: Space\n\nHover view: mouse\n\nshoot vaccines: left-click
+    / [Z] / [,]"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
