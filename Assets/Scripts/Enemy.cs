@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -15,6 +16,8 @@ public class Enemy : MonoBehaviour
     public float spawn_time = 10f;
     private float timer = 0.0f;
     public float threshold_time_spawn = 70.0f;
+    public float distance_minimum =5.0f;
+    private bool trigger_action = false;
 
     public void Initialize(GameObject character)
     {
@@ -46,6 +49,7 @@ public class Enemy : MonoBehaviour
 		currentHealth = maxHealth;
         wayPoint = GameObject.Find("wayPoint");
         healthBar.SetMaxHealth(maxHealth);
+       
 
     }
 
@@ -53,33 +57,40 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         spawn_enemy();
-        if (stunned) {
-           
-            stun_time += Time.deltaTime;
-            print(stun_time);
-            if (stun_time > 10) {
-                stunned = false;
-                currentHealth = maxHealth;
-                healthBar.SetMaxHealth(maxHealth);
-                m_animator.SetTrigger("Reset");
+        float distance = Vector3.Distance(wayPoint.transform.position, transform.position);
+        if (distance < distance_minimum)
+        {
+            trigger_action = true;
+        }
+        if (trigger_action)
+        {
+            if (stunned)
+            {
+
+                stun_time += Time.deltaTime;
+                print(stun_time);
+                if (stun_time > 10)
+                {
+                    stunned = false;
+                    currentHealth = maxHealth;
+                    healthBar.SetMaxHealth(maxHealth);
+                    m_animator.SetTrigger("Reset");
+                }
+            }
+            else
+            {
+                wayPointPos = new Vector3(wayPoint.transform.position.x, transform.transform.position.y, wayPoint.transform.position.z);
+                //Here, the zombie's will follow the waypoint.
+                Vector3 oldPos = transform.position;
+
+                transform.rotation = Quaternion.LookRotation(wayPointPos);
+                transform.position = Vector3.MoveTowards(transform.position, wayPointPos, m_moveSpeedAggro * Time.deltaTime);
+
+
+                Vector3 direction = transform.position - Vector3.MoveTowards(transform.position, wayPointPos, m_moveSpeedAggro * Time.deltaTime);
+                m_animator.SetFloat("MoveSpeed", direction.magnitude);
             }
         }
-        else {          
-            wayPointPos = new Vector3(wayPoint.transform.position.x, transform.transform.position.y, wayPoint.transform.position.z);
-            //Here, the zombie's will follow the waypoint.
-            Vector3 oldPos = transform.position;
-
-            transform.rotation = Quaternion.LookRotation(wayPointPos);
-            transform.position = Vector3.MoveTowards(transform.position, wayPointPos, m_moveSpeedAggro * Time.deltaTime);
-        
-
-            Vector3 direction = transform.position - Vector3.MoveTowards(transform.position, wayPointPos, m_moveSpeedAggro * Time.deltaTime);
-            m_animator.SetFloat("MoveSpeed", direction.magnitude);
-        }
-        
-
-        
-        
     }
 
     void spawn_enemy()
@@ -143,4 +154,6 @@ public class Enemy : MonoBehaviour
         }
         return true;
     }
+
+
 }
