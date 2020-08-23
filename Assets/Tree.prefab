@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 8475879415293978203}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.99999994, y: 0.14167109, z: 0.85623974}
+  m_LocalScale: {x: 0.70820296, y: 0.05810115, z: 0.52714753}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -81,7 +81,7 @@ MeshRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
+  m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -289,17 +289,17 @@ MonoBehaviour:
     rootSpread: 5
     groundOffset: 0
     rootMatrix:
-      e00: -0.9865339
-      e01: 0.162944
-      e02: 0.014148133
+      e00: -0.9898156
+      e01: 0.14211948
+      e02: 0.008193587
       e03: 0
-      e10: -0.014231696
-      e11: 0.000654507
-      e12: -0.99989855
+      e10: -0.008268841
+      e11: 0.00006107119
+      e12: -0.99996585
       e13: 0
-      e20: -0.16293672
-      e21: -0.98663515
-      e22: 0.0016732758
+      e20: -0.14211512
+      e21: -0.98984957
+      e22: 0.0011147141
       e23: 0
       e30: 0
       e31: 0
@@ -566,17 +566,17 @@ MonoBehaviour:
     pitch: -0
     rotation: {x: 0, y: 0, z: 0, w: 1}
     matrix:
-      e00: -0.9865339
-      e01: 0.162944
-      e02: 0.014148133
+      e00: -0.9898156
+      e01: 0.14211948
+      e02: 0.008193587
       e03: 0
-      e10: -0.014231696
-      e11: 0.000654507
-      e12: -0.99989855
+      e10: -0.008268841
+      e11: 0.00006107119
+      e12: -0.99996585
       e13: 0
-      e20: -0.16293672
-      e21: -0.98663515
-      e22: 0.0016732758
+      e20: -0.14211512
+      e21: -0.98984957
+      e22: 0.0011147141
       e23: 0
       e30: 0
       e31: 0
