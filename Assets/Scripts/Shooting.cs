@@ -11,7 +11,7 @@ public class Shooting : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Comma)) {
-            GameObject instBullet = Instantiate(bullet, transform.position + new Vector3(0, 0.5f, 0) + transform.forward, transform.rotation) as GameObject;
+            GameObject instBullet = Instantiate(bullet, transform.position + new Vector3(0, 0.5f, 0) + transform.forward, transform.rotation * Quaternion.Euler(0,0,150)) as GameObject;
             Rigidbody instBulletRigidBody = instBullet.GetComponent<Rigidbody>();
             instBulletRigidBody.AddRelativeForce(new Vector3(0,0,speed));
         }
