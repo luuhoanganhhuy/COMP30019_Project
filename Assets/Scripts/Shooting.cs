@@ -10,7 +10,7 @@ public class Shooting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0)) {
+        if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Comma)) {
             GameObject instBullet = Instantiate(bullet, transform.position + new Vector3(0, 0.5f, 0) + transform.forward, transform.rotation) as GameObject;
             Rigidbody instBulletRigidBody = instBullet.GetComponent<Rigidbody>();
             instBulletRigidBody.AddRelativeForce(new Vector3(0,0,speed));
