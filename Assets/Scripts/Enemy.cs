@@ -8,6 +8,13 @@ public class Enemy : MonoBehaviour
 	public int currentHealth;
 	public int damage = -20;
     public HealthBar healthBar;
+    public GameObject wallLeft;
+    public GameObject wallRight;
+    public GameObject wallUp;
+    public GameObject wallDown;
+    public float spawn_time = 10f;
+    private float timer = 0.0f;
+    public float threshold_time_spawn = 70.0f;
 
     public void Initialize(GameObject character)
     {
@@ -37,14 +44,15 @@ public class Enemy : MonoBehaviour
     void Start()
     {
 		currentHealth = maxHealth;
-
         wayPoint = GameObject.Find("wayPoint");
         healthBar.SetMaxHealth(maxHealth);
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        spawn_enemy();
         if (stunned) {
            
             stun_time += Time.deltaTime;
@@ -56,8 +64,7 @@ public class Enemy : MonoBehaviour
                 m_animator.SetTrigger("Reset");
             }
         }
-        else {
-            
+        else {          
             wayPointPos = new Vector3(wayPoint.transform.position.x, transform.transform.position.y, wayPoint.transform.position.z);
             //Here, the zombie's will follow the waypoint.
             Vector3 oldPos = transform.position;
@@ -70,7 +77,31 @@ public class Enemy : MonoBehaviour
             m_animator.SetFloat("MoveSpeed", direction.magnitude);
         }
         
+
+        
+        
     }
+
+    void spawn_enemy()
+    {
+        if (Time.time < threshold_time_spawn)
+        {
+            timer += Time.deltaTime;
+            if (timer > spawn_time)
+            {
+                Vector3 newPos = generatePos(wallLeft.transform.position.x, wallDown.transform.position.z, wallRight.transform.position.x, wallUp.transform.position.z);
+                while (!isValid(newPos))
+                {
+                    //newPos = generatePos(-3,-3,3,3);
+                    newPos = generatePos(wallLeft.transform.position.x, wallDown.transform.position.z, wallRight.transform.position.x, wallUp.transform.position.z);
+                }
+                Instantiate(this, newPos, this.transform.rotation);
+                timer = 0;
+            }
+        }
+    }
+
+    
 
 	public void ChangeHealth(int delta)
 	{
@@ -92,13 +123,6 @@ public class Enemy : MonoBehaviour
         if (other.gameObject.tag == "Bullet")
         {
             ChangeHealth(damage);
-            print(currentHealth);
-            Vector3 newPos = generatePos(-3, -3, 3, 3);
-            while (!isValid(this.transform.position + newPos))
-            {
-                newPos = generatePos(-3, -3, 3, 3);
-            }
-            Instantiate(this, this.transform.position + newPos, this.transform.rotation);
         }
     }
 
