@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
     public GameObject wallRight;
     public GameObject wallUp;
     public GameObject wallDown;
+    public GameObject trigger;
     public float spawn_time = 10f;
     private float timer = 0.0f;
     public float threshold_time_spawn = 70.0f;
@@ -49,7 +50,7 @@ public class Enemy : MonoBehaviour
 		currentHealth = maxHealth;
         wayPoint = GameObject.Find("wayPoint");
         healthBar.SetMaxHealth(maxHealth);
-       
+        trigger.SetActive(false);
 
     }
 
@@ -61,6 +62,7 @@ public class Enemy : MonoBehaviour
         if (distance < distance_minimum)
         {
             trigger_action = true;
+            trigger.SetActive(true);
         }
         if (trigger_action)
         {
